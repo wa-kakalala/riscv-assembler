@@ -1,27 +1,25 @@
+# riscv-assembler
+
 [![kcelebi](https://circleci.com/gh/kcelebi/riscv-assembler.svg?style=svg)](https://circleci.com/gh/kcelebi/riscv-assembler)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# ALL PRODUCTION MOVED TO [www.github.com/celebi-pkg/riscv-assembler](https://www.github.com/celebi-pkg/riscv-assembler)
-
-**There won't be any more updates in this repository, please migrate there for the newest versions and fixes.**
-
 ![example](references/mdimg.png)
-# riscv-assembler Documentation
-RISC-V Assembly code assembler package. [View the full documentation here](https://www.riscvassembler.org)
-
+# documentation
 This package contains tools and functions that can convert **RISC-V Assembly code to machine code**. The whole process is implemented using Python purely for understandability, less so for efficiency in computation. These tools can be used to **convert given lines of code or [whole files](#convert) to machine code**. For conversion, output file types are binary, text files, and printing to console. The supported instruction types are **R, I, S, SB, U, and UJ**. Almost all standard instructions are supported, most pseudo instructions are also supported.
 
-Feel free to open an issue or contact me at [kayacelebi17@gmail.com](mailto:kayacelebi17@gmail.com?subject=[GitHub]%20riscv-assembler) with any questions/inquiries.
+Risc-V Instruction Set Specifications: [RISC-V Instruction Set Specifications — riscv-isa-pages documentation (msyksphinz-self.github.io)](https://msyksphinz-self.github.io/riscv-isadoc/html/index.html)
 
-# Installation
-The package can be installed using pip:
+# installation
 
-    $ pip install riscv-assembler
+## **build**
 
-If issues arise try:
+```bash
+python setup.py bdist_wheel
+```
 
-    $ python3 -m pip install riscv-assembler
+## **install**
 
-It's possible tha the ``bitstring`` dependency might not install correctly. If this occurs, you can simply pip install it separately:
+```python
+pip install dist/<package_name_xxx>.whl
+```
 
-    $ pip install bitstring
