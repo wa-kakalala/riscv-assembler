@@ -1,4 +1,3 @@
-import pytest
 from pathlib import Path
 from riscv_assembler.convert import AssemblyConverter as AC
 from riscv_assembler.parse import Parser

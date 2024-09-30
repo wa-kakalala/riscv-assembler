@@ -71,7 +71,7 @@ class ProjectConverter:
 		if self.getOutputType() == 'r':
 			g = [self.addDict(f, self.catch_convert(f)) for f in files]
 			return self.instr
-		no_ret = [catch_convert(f) for f in files]
+		no_ret = [self.catch_convert(f) for f in files]
 
 	def catch_convert(self,f):
 		try:

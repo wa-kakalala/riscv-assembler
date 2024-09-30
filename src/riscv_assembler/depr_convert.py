@@ -1,4 +1,3 @@
-from bitstring import BitArray
 import math as m
 from pathlib import Path
 import os
@@ -316,7 +315,7 @@ class AssemblyConverter:
 			raise WrongInstructionType()
 		opcode = 0;f3 = 1;f7 = 2
 
-		mod_imm = (int(imm) >> 12)
+		mod_imm = (int(imm))
 		return "".join([
 			#self.__binary(int(imm),32)[::-1][12:32][::-1],
 			self.__binary(mod_imm,20),

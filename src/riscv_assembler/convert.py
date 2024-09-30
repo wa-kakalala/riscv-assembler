@@ -116,7 +116,8 @@ class AssemblyConverter:
 			AssemblyConverter.write_to_file(output, file)
 			return
 		elif self.__output_mode == 'p':
-			print(output)
+			for instruct in output:
+				print(instruct)
 			return
 
 		raise NotImplementedError()

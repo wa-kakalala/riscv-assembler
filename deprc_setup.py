@@ -20,7 +20,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
-    install_requires=['bitstring==3.1.7'],
-   # dependency_links = ["https://pypi.org/project/bitstring/"],
+    # install_requires=['bitstring==3.1.7'],
+    # dependency_links = ["https://pypi.org/project/bitstring/"],
     python_requires='>=3'
 )

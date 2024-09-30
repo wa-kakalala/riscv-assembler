@@ -1,6 +1,4 @@
 from pathlib import Path
-from bitstring import BitArray
-import math as m
 
 __all__ = [
 	'R_instr', 'I_instr', 'S_instr',
@@ -150,7 +148,7 @@ class _U(Instruction):
 
 	@staticmethod
 	def immediate(imm):
-		return format(int(imm) >> 12, '013b')
+		return format(int(imm), '020b')
 
 class _UJ(Instruction):
 	def __repr__(self):
@@ -294,7 +292,7 @@ class _Pseudo_parse(InstructionParser):
 			rs1, rs2, rd = reg_map["x0"], reg_map[tokens[2]], reg_map[tokens[1]]
 			return R("sub", rs1, rs2, rd)
 
-		return BadInstructionError()
+		return None
 
 def JUMP(x : str, line_num : int, code: list) -> int:
 	# search forward
@@ -369,7 +367,7 @@ I_instr = [
 	"ld", "lbu", "lhu",
 	"lwu", "fence", "fence.i", 
 	"slli", "slti", "sltiu", 
-	"xori", "slri", "srai",
+	"xori", "srli", "srai",
 	"ori", "andi", "addiw",
 	"slliw", "srliw", "sraiw", 
 	"jalr", "ecall", "ebreak", 
