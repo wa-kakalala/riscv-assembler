@@ -85,12 +85,12 @@ class AssemblyConverter:
 		"ld", "lbu", "lhu",
 		"lwu", "fence", "fence.i", 
 		"slli", "slti", "sltiu", 
-		"xori", "slri", "srai",
+		"xori", "srli", "srai",
 		"ori", "andi", "addiw",
 		"slliw", "srliw", "sraiw", 
 		"jalr", "ecall", "ebreak", 
 		"CSRRW", "CSRRS","CSRRC", 
-		"CSRRWI", "CSRRSI", "CSRRCI" 
+		"CSRRWI", "CSRRSI", "CSRRCI",
 	]
 	S_instr = [
 		"sw", "sb", "sh", 
@@ -136,7 +136,7 @@ class AssemblyConverter:
 		#get instruction data and register mapping
 		self.r_map, self.instr_data = self.__pre()
 
-	def __str__():
+	def __str__(self):
 		return "AssemblyConverter(output_type={}, nibble={}, filename={}, hexmode={})".format(
 			self.output_type, self.nibble,
 			self.filename, self.hexMode
@@ -362,7 +362,6 @@ class AssemblyConverter:
 		#f = open("riscinterpreter/data/reg_map.dat", "r")
 		#f = open("src/data/reg_map.dat","r")
 		line = f.readline()
-
 		#assign mapping 
 		while line != "":
 			elems = line.split(" ")
@@ -398,8 +397,8 @@ class AssemblyConverter:
 		file = open(self.filename, "r")
 
 		#store the lines in the arr
-		line = file.readline()
-		while line != "":
+		line = file.readline()  
+		while line != "": # no empty line
 			line = line.strip()
 			clean = flatten([elem.replace("\n","").split(",") for elem in line.split(" ")])
 			if line == "" or not self.__valid_line(clean, True):
@@ -416,7 +415,7 @@ class AssemblyConverter:
 		instructions = [] 
 		for i in range(len(self.code)):
 			line = self.code[i]
-
+        
 			response = self.__interpret(line,i)
 			if -1 not in response:
 				instructions.extend(response)
@@ -437,7 +436,6 @@ class AssemblyConverter:
 
 		while "" in clean:
 			clean.remove("")
-
 		#check if line is comment, empty space, .global .text
 		if not self.__valid_line(clean):
 			return [-1]
@@ -472,8 +470,8 @@ class AssemblyConverter:
 			res.append(self.SB_type(clean[0], self.__reg_map(clean[1]), self.__reg_map(clean[2]), self.calcJump(clean[3],i)))
 			#print(res)
 		elif clean[0] in self.U_instr:
-			res.append(self.U_type(clean[0], clean[1], self.__reg_map(clean[2])))
-			#print(res)
+			res.append(self.U_type(clean[0],clean[2],self.__reg_map(clean[1])))
+			
 		elif clean[0] in self.UJ_instr:
 			if len(clean) == 3:
 				res.append(self.UJ_type(clean[0], self.calcJump(clean[2],i), self.__reg_map(clean[1])))
@@ -516,7 +514,7 @@ class AssemblyConverter:
 			for r in res:
 				for e in r:
 					if int(e) != 0 and int(e) != 1:
-						raise Not__binaryNumber(r)
+						raise NotBinaryNumber(r)
 				if len(r) != 32:
 					raise WrongInstructionSize(len(r))
 

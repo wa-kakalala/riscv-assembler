@@ -250,7 +250,7 @@ class _U_parse(InstructionParser):
 		return "U Parser"
 
 	def organize(self, tokens):
-		instr, imm, rd = tokens[0], tokens[1], reg_map[tokens[2]]
+		instr, imm, rd = tokens[0], tokens[2], reg_map[tokens[1]]
 		return U(instr, imm, rd)
 
 class _UJ_parse(InstructionParser):
